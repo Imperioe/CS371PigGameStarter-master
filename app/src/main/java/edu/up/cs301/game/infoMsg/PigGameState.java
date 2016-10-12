@@ -10,7 +10,7 @@ public class PigGameState extends GameState {
     private int runTotal;
     private int dieValue;
 
-    private PigGameState(){
+    public PigGameState(){
         super();
         turnID = 0;
         p0Score = 0;
@@ -19,7 +19,7 @@ public class PigGameState extends GameState {
         dieValue = 0;
     }
 
-    private PigGameState(PigGameState pgs){
+    public PigGameState(PigGameState pgs){
         super();
         this.dieValue = pgs.getDieValue();
         this.runTotal = pgs.getRunTotal();
