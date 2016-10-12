@@ -67,6 +67,7 @@ public class PigLocalGame extends LocalGame {
         }else if(action instanceof PigRollAction){
             Random rand = new Random();
             pgs.setDieValue(rand.nextInt(6)+1);
+            int die = pgs.getDieValue();
 
             return true;
         }
