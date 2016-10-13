@@ -68,6 +68,19 @@ public class PigLocalGame extends LocalGame {
             Random rand = new Random();
             pgs.setDieValue(rand.nextInt(6)+1);
             int die = pgs.getDieValue();
+            if(die != 1){
+                pgs.setRunTotal(die+pgs.getRunTotal());
+            }else{
+                pgs.setRunTotal(0);
+                int id = pgs.getTurnID();
+                if(players.length > 1){
+                    if(id == 0){
+                        pgs.setTurnID(1);
+                    }else if(id == 1){
+                        pgs.setTurnID(0);
+                    }
+                }
+            }
 
             return true;
         }
@@ -79,7 +92,8 @@ public class PigLocalGame extends LocalGame {
      */
     @Override
     protected void sendUpdatedStateTo(GamePlayer p) {
-        //TODO  You will implement this method
+        PigGameState copy = new PigGameState(pgs);
+        p.sendInfo(copy);
     }//sendUpdatedSate
 
     /**
@@ -91,7 +105,12 @@ public class PigLocalGame extends LocalGame {
      */
     @Override
     protected String checkIfGameOver() {
-        //TODO  You will implement this method
+        if(pgs.getP0Score() >= 50){
+            return playerNames[0] + " " + pgs.getP0Score();
+        }else if(pgs.getP1score() >= 50){
+            return playerNames[1] + " " + pgs.getP1score();
+        }
+
         return null;
     }
 
